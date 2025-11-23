@@ -6,6 +6,11 @@ class CRUDHandlerRouter(APIRouter):
         self.handler = handler
         super().__init__(prefix=f"/{handler.name}")
 
+        @self.get("/")
+        async def get_list():
+            read_objects = self.handler.list()
+            return {"objects": read_objects}
+
         @self.get("/{object_id}")
         async def get_object(object_id: int):
             read_object = self.handler.get(object_id)

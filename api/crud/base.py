@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 from typing import Type, TypeVar, Generic, Optional, List
 from pydantic import BaseModel
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from models.base import Base
 
@@ -26,7 +27,11 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
         self.update_schema = update_schema
 
     def list(self) -> Optional[List[ReadSchema]]:
-        raise NotImplementedError
+        statement = select(self.db_model)
+        read_object_list = []
+        for db_item in self.session.scalars(statement):
+            read_object_list.append(self.read_schema.model_validate(db_item))
+        return read_object_list
 
     def get(self, object_id: int) -> Optional[ReadSchema]:
         db_item = self.session.query(self.db_model).filter(self.db_model.id == object_id).first()
