@@ -2,3 +2,4 @@
 *.pyc
 .idea/workspace.xml
 api/database.sqlite
+/frontend/.idea
