@@ -6,6 +6,6 @@ from .base import CRUDHandler
 class EntryCRUD(CRUDHandler[Entry, EntryRead, EntryCreate, EntryUpdate]):
 
     def __init__(self):
-        super().__init__(session, Entry, EntryRead, EntryCreate, EntryUpdate)
+        super().__init__("entry", session, Entry, EntryRead, EntryCreate, EntryUpdate)
 
 handler: EntryCRUD = EntryCRUD()

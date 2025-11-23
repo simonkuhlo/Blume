@@ -6,6 +6,6 @@ from .base import CRUDHandler
 class QuestionCollectionCRUD(CRUDHandler[QuestionCollection, QuestionCollectionRead, QuestionCollectionCreate, QuestionCollectionUpdate]):
 
     def __init__(self):
-        super().__init__(session, QuestionCollection, QuestionCollectionRead, QuestionCollectionCreate, QuestionCollectionUpdate)
+        super().__init__("question_collection", session, QuestionCollection, QuestionCollectionRead, QuestionCollectionCreate, QuestionCollectionUpdate)
 
 handler: QuestionCollectionCRUD = QuestionCollectionCRUD()

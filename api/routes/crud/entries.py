@@ -1,9 +1,4 @@
-from fastapi import APIRouter
+from .crud_handler_router import CRUDHandlerRouter
+from crud import entry
 
-prefix: str = "/entries"
-
-router = APIRouter(prefix=prefix)
-
-@router.get("/hello")
-async def hello():
-    return {"hello": "world"}
+router = CRUDHandlerRouter(entry)

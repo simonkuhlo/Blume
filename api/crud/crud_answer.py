@@ -6,6 +6,6 @@ from .base import CRUDHandler
 class AnswerCRUD(CRUDHandler[Answer, AnswerRead, AnswerCreate, AnswerUpdate]):
 
     def __init__(self):
-        super().__init__(session, Answer, AnswerRead, AnswerCreate, AnswerUpdate)
+        super().__init__("answer", session, Answer, AnswerRead, AnswerCreate, AnswerUpdate)
 
 handler: AnswerCRUD = AnswerCRUD()

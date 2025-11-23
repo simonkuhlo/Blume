@@ -6,6 +6,6 @@ from .base import CRUDHandler
 class UserCRUD(CRUDHandler[User, UserRead, UserCreate, UserUpdate]):
 
     def __init__(self):
-        super().__init__(session, User, UserRead, UserCreate, UserUpdate)
+        super().__init__("user", session, User, UserRead, UserCreate, UserUpdate)
 
 handler: UserCRUD = UserCRUD()
