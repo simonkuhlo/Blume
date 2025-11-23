@@ -3,6 +3,6 @@ from typing import Union
 from pydantic import BaseModel
 
 class BaseAnswerType(BaseModel):
-    name = "string"
+    name:str = "string"
 
 AnswerType = Union[BaseAnswerType]

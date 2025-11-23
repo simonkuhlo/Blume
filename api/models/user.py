@@ -1,12 +1,18 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
 from sqlalchemy import String
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
-from ..database import Base
+from database import Base
+if TYPE_CHECKING:
+    from answer import Answer
+    from entry import Entry
 
 class User(Base):
     __tablename__ = "user_account"
+    id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
-    fullname: Mapped[Optional[str]]
+    answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="user")
+    entries: Mapped[list["Entry"]] = relationship("Entry", back_populates="user")
+
     def __repr__(self) -> str:
-        return f"User(id={self.id!r}, name={self.name!r}, fullname={self.fullname!r})"
+        return f"User(id={self.id!r}"

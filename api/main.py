@@ -1,7 +1,7 @@
 import uvicorn
 
-host: str = "0.0.0.0"
-port: int = 8080
+host: str = "localhost"
+port: int = 8081
 debug: bool = True
 
 if __name__ == "__main__":

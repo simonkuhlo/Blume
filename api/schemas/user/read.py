@@ -1,5 +1,8 @@
 from pydantic import BaseModel
 
 class Read(BaseModel):
-    id: str
+    id: int
     name: str
+
+    class Config:
+        from_attributes = True
