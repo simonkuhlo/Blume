@@ -26,8 +26,8 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
         self.create_schema = create_schema
         self.update_schema = update_schema
 
-    def list(self) -> Optional[List[ReadSchema]]:
-        statement = select(self.db_model)
+    def list(self, start_id: Optional[int] = 0, limit: Optional[int] = 100) -> Optional[List[ReadSchema]]:
+        statement = select(self.db_model).offset(start_id).limit(limit)
         read_object_list = []
         for db_item in self.session.scalars(statement):
             read_object_list.append(self.read_schema.model_validate(db_item))
