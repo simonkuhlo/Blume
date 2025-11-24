@@ -1,5 +1,6 @@
 server_host = "0.0.0.0"
 server_port = 8080
+server_debug_mode = True
 
 
 app_title: str = "BlumeFrontend"

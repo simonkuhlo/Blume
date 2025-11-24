@@ -46,6 +46,10 @@ async def show_viewer_app(request: Request):
 async def show_creator_app(request: Request):
     return templates.TemplateResponse("creator.j2", {"request": request})
 
+@app.get("/book", response_class=HTMLResponse)
+async def get_book(request: Request):
+    return templates.TemplateResponse("book/book.j2", {"request": request})
+
 @app.get("/favicon.ico")
 async def get_favicon():
     return FileResponse("static/img/favicon.ico")

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<style>
+    .book {
+      display: flex;
+    }
+
+    .book-container {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #cover {
+      width: 250px;
+      height: 400px;
+    }
+
+    .flip-book {
+      width: 250px;
+      height: 400px;
+      position: relative;
+        transform-style: preserve-3d;
+        transform: perspective(700px) rotateX(15deg);
+    }
+
+    .flip {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+        padding: 10px;
+      transform-origin: left;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg);
+      transition: .5s;
+        border: 1px solid black;
+      color: green;
+        box-sizing: border-box;
+    }
+
+    .front {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: grey;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+
+    .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+      background-color: grey;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+
+    .next-btn {
+      position: absolute;
+      bottom: 13px;
+      right: 13px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .back-btn {
+      position: absolute;
+      bottom: 13px;
+      right: 13px;
+      cursor: pointer;
+      color: #fff;
+    }
+    #p1 {
+      z-index: 3;
+    }
+    #p2 {
+      z-index: 2;
+    }
+    #p3 {
+      z-index: 1;
+    }
+    #c1:checked ~ .flip-book #p1 {
+      transform: rotateY(-180deg);
+      z-index: 1;
+    }
+    #c2:checked ~ .flip-book #p2 {
+      transform: rotateY(-180deg);
+      z-index: 2;
+    }
+    #c3:checked ~ .flip-book #p3 {
+      transform: rotateY(-180deg);
+      z-index: 3;
+    }
+</style>
+</head>
+<body>
+<div class="book-container">
+<div class="book">
+  <!-- For Next/Prev Controls -->
+  <input type="checkbox" id="c1">
+  <input type="checkbox" id="c2">
+  <input type="checkbox" id="c3">
+  <!-- Book Cover -->
+  <div id="cover">
+    <img src="cover.jpg" alt="Cover">
+  </div>
+  <!-- Pages -->
+  <div class="flip-book">
+    <!-- Page 1 -->
+    <div class="flip" id="p1">
+      <div class="back">
+        <h2>Page 1 Back</h2>
+          <p>You can write stuff on the back of a page!</p>
+        <label for="c1" class="back-btn">Before</label>
+      </div>
+      <div class="front">
+        <h2>Page 1</h2>
+          <h2>Book Demo</h2>
+        <label for="c1" class="next-btn">NEXT</label>
+      </div>
+    </div>
+    <!-- Page 2 -->
+    <div class="flip" id="p2">
+      <div class="back">
+        <img src="2.jpg" alt="image">
+        <label for="c2" class="back-btn">Before</label>
+      </div>
+      <div class="front">
+        <h2>Page 2</h2>
+        <label for="c2" class="next-btn">NEXT</label>
+      </div>
+    </div>
+    <!-- Page 3 -->
+    <div class="flip" id="p3">
+      <div class="back">
+        <label for="c3" class="back-btn">Before</label>
+      </div>
+      <div class="front">
+        <h2>Page 3</h2>
+        <label for="c3" class="next-btn">NEXT</label>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
