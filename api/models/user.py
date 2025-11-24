@@ -1,5 +1,5 @@
 from typing import Optional, TYPE_CHECKING
-from sqlalchemy import String
+from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, relationship
 from sqlalchemy.orm import mapped_column
 from models.base import Base
@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 class User(Base):
     __tablename__ = "user_account"
     name: Mapped[str] = mapped_column(String(30))
+    admin: Mapped[bool] = mapped_column(Boolean, default=False)
     answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="user")
     entries: Mapped[list["Entry"]] = relationship("Entry", back_populates="user")
 
