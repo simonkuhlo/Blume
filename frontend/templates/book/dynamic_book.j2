@@ -5,9 +5,15 @@
 <link rel="stylesheet" href="/static/style/book.css">
 <div class="book-container">
 <div class="book">
-  <div class="flip-book" id="page-root">
-      {% include "book/entry.j2" %}
+
+  <div class="flip-book">
+      <div class="book-cover already_flipped"></div>
+      <div class="book-3d" id="page-root">
+          {% include "book/entry.j2" %}
+      </div>
+      <div class="book-cover"></div>
   </div>
+
 </div>
 </div>
 {% endblock %}

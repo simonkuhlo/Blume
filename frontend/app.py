@@ -56,9 +56,9 @@ async def get_book(request: Request):
 async def get_next_page(request: Request, index: int = 0):
     return templates.TemplateResponse("book/book_page.j2", {"request": request, "page_index": index})
 
-@app.get("/book/entry/{transition_mode}/{index}", response_class=HTMLResponse)
-async def view_entry(request: Request, index: int = 0, transition_mode: Literal["next", "prev"] = "next"):
-    return templates.TemplateResponse("book/entry.j2", {"request": request, "entry_id": index, "transition_mode": transition_mode})
+@app.get("/book/entry/{index}/{transition}/", response_class=HTMLResponse)
+async def get_entry(request: Request, index: int = 0, transition: Literal["next", "prev"] = "next"):
+    return templates.TemplateResponse("book/entry.j2", {"request": request, "entry_id": index, "transition": transition})
 
 @app.get("/favicon.ico")
 async def get_favicon():

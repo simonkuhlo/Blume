@@ -1,4 +1,4 @@
-<div class="flip {% if offset == -1 %} already_flipped {% elif offset == 0 %}  {% if transition_mode == "prev" %} unflipped {% else %} flipped {% endif %}{% endif %}"
+<div class="flip {% if offset == -1 %} already_flipped {% elif offset == 0 %}  {% if transition == "prev" %} unflipped {% else %} flipped {% endif %}{% endif %}"
 {% if offset == 0 %} style="z-index:1;" {% endif %}>
 
   {% set entry_id = entry_id + offset%}
