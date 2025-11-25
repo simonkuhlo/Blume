@@ -1,0 +1,13 @@
+{% extends "base.j2" %}
+
+
+{% block main %}
+<link rel="stylesheet" href="/static/style/book.css">
+<div class="book-container">
+<div class="book">
+  <div class="flip-book" id="page-root">
+      {% include "book/entry.j2" %}
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,3 +1,5 @@
+from typing import Literal
+
 import settings
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
@@ -48,7 +50,15 @@ async def show_creator_app(request: Request):
 
 @app.get("/book", response_class=HTMLResponse)
 async def get_book(request: Request):
-    return templates.TemplateResponse("book/book.j2", {"request": request})
+    return templates.TemplateResponse("book/dynamic_book.j2", {"request": request, "entry_id": 0})
+
+@app.get("/book/next_page/{index}", response_class=HTMLResponse)
+async def get_next_page(request: Request, index: int = 0):
+    return templates.TemplateResponse("book/book_page.j2", {"request": request, "page_index": index})
+
+@app.get("/book/entry/{transition_mode}/{index}", response_class=HTMLResponse)
+async def view_entry(request: Request, index: int = 0, transition_mode: Literal["next", "prev"] = "next"):
+    return templates.TemplateResponse("book/entry.j2", {"request": request, "entry_id": index, "transition_mode": transition_mode})
 
 @app.get("/favicon.ico")
 async def get_favicon():
