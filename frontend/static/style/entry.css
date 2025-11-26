@@ -17,11 +17,12 @@
 .entry-container {
     height: 100%;
     gap: 5px;
-    justify-content: center;
+    justify-content:flex-start;
 }
 
 .entry-header {
     height: 200px;
+    flex-shrink: 0;
 }
 
 .entry-header-image {
@@ -32,9 +33,14 @@
 
 .entry-answer {
     height: 130px;
+    flex-grow: 1;
 }
 
 .entry-answer-question {
     height: 30px;
     border-bottom: 1px solid black;
+}
+
+.entry-canvas {
+    height: 100%;
 }
