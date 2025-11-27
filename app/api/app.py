@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 title: str = "Blume"
 summary: str = ""
 description: str = ""
-version: str = "0.0.1"
+version: str = "0.1.0"
 origins = [
     "http://localhost:6969",
     "http://77.23.199.184:6969",
