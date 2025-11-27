@@ -8,5 +8,4 @@ if TYPE_CHECKING:
 class EntryAnswerRead(BaseModel):
     id: int
     question: QuestionRead
-    entry: "EntryRead"
     string_value: str

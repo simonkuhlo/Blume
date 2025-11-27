@@ -1,16 +1,23 @@
-
 <div class="box-v entry-container">
-    <div class="entry-element entry-topic"><h2>This is page 1 of entry {{ entry_id }}</h2></div>
-    <div class="entry-element box-h entry-header">
-        <div class="spacer-h">Header Information (Name, age, etc.)</div>
-        <div class="entry-header-image">
-            Image
-        </div>
+    <div class="entry-element entry-answer">
+        <div class="entry-answer-question">{{ entry.answers[0].question.title }}</div>
+        <div class="entry-answer-value">{{ entry.answers[0].string_value }}</div>
     </div>
-        <div class="entry-element entry-canvas">
-        <div class="entry-answer-question">Entry Canvas</div>
-
+    <div class="entry-element entry-answer">
+        <div class="entry-answer-question">{{ entry.answers[0].question.title }}</div>
+        <div class="entry-answer-value">{{ entry.answers[0].string_value }}</div>
     </div>
-
-    <button hx-get="/book/entry/{{ entry_id + 1}}/prev" hx-target="#page-root">Back</button>
+    <div class="entry-element entry-answer">
+        <div class="entry-answer-question">{{ entry.answers[0].question.title }}</div>
+        <div class="entry-answer-value">{{ entry.answers[0].string_value }}</div>
+    </div>
+    <div class="entry-element entry-answer">
+        <div class="entry-answer-question">{{ entry.answers[0].question.title }}</div>
+        <div class="entry-answer-value">{{ entry.answers[0].string_value }}</div>
+    </div>
+    <div class="entry-element entry-answer">
+        <div class="entry-answer-question">{{ entry.answers[0].question.title }}</div>
+        <div class="entry-answer-value">{{ entry.answers[0].string_value }}</div>
+    </div>
+<button hx-get="/book/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
 </div>

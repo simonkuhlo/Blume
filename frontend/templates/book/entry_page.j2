@@ -5,11 +5,10 @@
 {% if offset == 0 %} style="z-index:1;" {% endif %}>
     {% with entry_id = entry_id%}
         <div class="back" data-entry_id="{{ entry_id }}" id="p{{ entry_id }}b">
-            {% include "book/entry_page_front.j2" %}
+            {% include "book/entry_page_back.j2" %}
         </div>
     {% endwith %}
-
     <div class="front" data-entry_id="{{ entry_id }}" id="e{{ entry_id }}f">
-        {% include "book/entry_page_back.j2" %}
+        {% include "book/entry_page_front.j2" %}
     </div>
 </div>

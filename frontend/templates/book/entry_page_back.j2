@@ -1,23 +1,16 @@
+
 <div class="box-v entry-container">
-    <div class="entry-element entry-answer">
-        <div class="entry-answer-question">Question</div>
-        <div class="entry-answer-value">Answer</div>
+    <div class="entry-element entry-topic"><h2>{{ entry.user.name }}</h2></div>
+    <div class="entry-element box-h entry-header">
+        <div class="spacer-h">Header Information (Name, age, etc.)<br>This entry has the id {{ entry.id }}</div>
+        <div class="entry-header-image">
+            Image
+        </div>
     </div>
-    <div class="entry-element entry-answer">
-        <div class="entry-answer-question">Question</div>
-        <div class="entry-answer-value">Answer</div>
+        <div class="entry-element entry-canvas">
+        <div class="entry-answer-question">Entry Canvas</div>
+
     </div>
-    <div class="entry-element entry-answer">
-        <div class="entry-answer-question">Question</div>
-        <div class="entry-answer-value">Answer</div>
-    </div>
-    <div class="entry-element entry-answer">
-        <div class="entry-answer-question">Question</div>
-        <div class="entry-answer-value">Answer</div>
-    </div>
-    <div class="entry-element entry-answer">
-        <div class="entry-answer-question">Question</div>
-        <div class="entry-answer-value">Answer</div>
-    </div>
-<button hx-get="/book/entry/{{ entry_id - 1 }}/next" hx-target="#page-root">Next</button>
+
+    <button hx-get="/book/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
 </div>

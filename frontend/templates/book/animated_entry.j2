@@ -1,0 +1,31 @@
+
+<link rel="stylesheet" href="/static/style/entry.css">
+
+<div class="flip already_flipped">
+    {% with entry = previous_entry %}
+        <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+            {% include "book/entry_page_back.j2" %}
+        </div>
+    {% endwith %}
+</div>
+
+<div class="flip {% if transition == "prev" %} unflipped {% else %} flipped {% endif %}" style="z-index:1;">
+    {% with entry = current_entry %}
+    <div class="back" data-entry_id="{{ entry.id }}" id="p{{ entry.id }}b">
+        {% include "book/entry_page_back.j2" %}
+    </div>
+    {% endwith %}
+    {% with entry = previous_entry %}
+    <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+        {% include "book/entry_page_front.j2" %}
+    </div>
+    {% endwith %}
+</div>
+
+<div class="flip">
+    {% with entry = current_entry %}
+        <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
+            {% include "book/entry_page_front.j2" %}
+        </div>
+    {% endwith %}
+</div>

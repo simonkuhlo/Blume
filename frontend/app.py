@@ -7,6 +7,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import FileResponse
+from services.get_entry_data import get_entry_data
 
 app = FastAPI(title=settings.app_title, summary=settings.app_summary, description=settings.app_description, version=settings.app_version)
 
@@ -63,7 +64,15 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
             index = index + 1
         case "prev":
             index = index - 1
-    return templates.TemplateResponse("book/entry.j2", {"request": request, "entry_id": index, "transition": transition})
+    previous_entry = get_entry_data(index - 1)
+    current_entry = get_entry_data(index)
+    next_entry = get_entry_data(index + 1)
+    return templates.TemplateResponse("book/animated_entry.j2", {"request": request,
+                                                        "transition": transition,
+                                                        "previous_entry": previous_entry,
+                                                        "current_entry": current_entry,
+                                                        "next_entry": next_entry
+                                                        })
 
 @app.get("/favicon.ico")
 async def get_favicon():
