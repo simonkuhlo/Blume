@@ -1,0 +1,105 @@
+
+{% extends "base.j2" %}
+
+{% block main %}
+
+
+<style>
+  body { display: flex; flex-direction: column; align-items: center; font-family: sans-serif; margin: 20px; }
+  canvas { border: 1px solid #ccc; cursor: none; }
+  #controls { margin-bottom: 10px; }
+  #brushPreview {
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid black;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+
+<div id="controls">
+    <br><br><br><br>
+  <label>Color: <input type="color" id="colorPicker" value="#000000" /></label>
+  <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
+  <button id="eraserBtn">Eraser</button>
+  <button id="brushBtn">Brush</button>
+</div>
+
+<canvas id="canvas" width="800" height="500"></canvas>
+<div id="brushPreview"></div>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const colorPicker = document.getElementById('colorPicker');
+  const brushSize = document.getElementById('brushSize');
+  const eraserBtn = document.getElementById('eraserBtn');
+  const brushBtn = document.getElementById('brushBtn');
+  const brushPreview = document.getElementById('brushPreview');
+
+  let isDrawing = false;
+  let currentColor = colorPicker.value;
+  let currentSize = brushSize.value;
+  let isEraser = false;
+
+  canvas.addEventListener('mousedown', e => {
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
+
+  canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    ctx.closePath();
+  });
+
+  canvas.addEventListener('mouseout', () => {
+    isDrawing = false;
+  });
+
+  canvas.addEventListener('mousemove', e => {
+    // Update brush preview position and size
+    brushPreview.style.left = e.pageX + 'px';
+    brushPreview.style.top = e.pageY + 'px';
+    brushPreview.style.width = currentSize + 'px';
+    brushPreview.style.height = currentSize + 'px';
+    brushPreview.style.borderColor = isEraser ? 'white' : currentColor;
+
+    if (!isDrawing) return;
+
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = currentSize;
+    ctx.strokeStyle = isEraser ? 'white' : currentColor;
+    ctx.stroke();
+  });
+
+  colorPicker.addEventListener('input', e => {
+    currentColor = e.target.value;
+    if (!isEraser) brushPreview.style.borderColor = currentColor;
+  });
+
+  brushSize.addEventListener('input', e => {
+    currentSize = e.target.value;
+  });
+
+  eraserBtn.addEventListener('click', () => {
+    isEraser = true;
+    brushPreview.style.borderColor = 'white';
+  });
+
+  brushBtn.addEventListener('click', () => {
+    isEraser = false;
+    brushPreview.style.borderColor = currentColor;
+  });
+
+  // Initialize brush preview size and color
+  brushPreview.style.width = currentSize + 'px';
+  brushPreview.style.height = currentSize + 'px';
+  brushPreview.style.borderColor = currentColor;
+</script>
+
+{% endblock %}

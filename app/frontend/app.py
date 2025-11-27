@@ -49,6 +49,10 @@ async def show_viewer_app(request: Request):
 async def show_creator_app(request: Request):
     return templates.TemplateResponse("creator.j2", {"request": request})
 
+@app.get("/canvas", response_class=HTMLResponse)
+async def show_creator_app(request: Request):
+    return templates.TemplateResponse("canvas.j2", {"request": request})
+
 @app.get("/book", response_class=HTMLResponse)
 async def get_book(request: Request):
     return templates.TemplateResponse("book/dynamic_book.j2", {"request": request, "entry_id": 0})
