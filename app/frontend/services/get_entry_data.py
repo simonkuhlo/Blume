@@ -1,8 +1,8 @@
 from typing import Optional
-from schemas.entry import EntryRead
-from schemas.answer import AnswerRead, EntryAnswerRead
-from schemas.question import QuestionRead
-from schemas.user import UserRead
+from api.schemas.entry import EntryRead
+from api.schemas.answer import AnswerRead, EntryAnswerRead
+from api.schemas.question import QuestionRead
+from api.schemas.user import UserRead
 
 def get_entry_data(entry_id:int) -> Optional[EntryRead]:
     if entry_id < 0:

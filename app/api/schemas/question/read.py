@@ -1,11 +1,11 @@
 from pydantic import BaseModel
-from ..question import QuestionRead
+from ..answer_type import AnswerType
 
 class Read(BaseModel):
     id: int
-    name: str
+    title: str
     description: str
-    questions: list[QuestionRead]
+    #answer_type: AnswerType
 
     class Config:
         from_attributes = True
