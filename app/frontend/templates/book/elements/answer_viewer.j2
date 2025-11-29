@@ -1,4 +1,5 @@
 <div class="answer-viewer-frame">
+    {% if answer != None %}
     <div class="answer-viewer-header">
         <div class="box-h">
             <h3>{{ answer.question.description }}</h3>
@@ -9,4 +10,9 @@
     <div class="answer-viewer-main" id="answer-viewer-{{ answer.id }}-main">
         {{ answer.value }}
     </div>
+    {% else %}
+        <div class="box-center">
+            Answer not found.
+        </div>
+    {% endif %}
 </div>
