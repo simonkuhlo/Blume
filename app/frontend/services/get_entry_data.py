@@ -9,9 +9,12 @@ import settings
 async def get_entry_data_new(entry_id:int) -> Optional[EntryRead]:
     async with httpx.AsyncClient() as client:
         response = await client.get(f"{settings.api_url}/entry/{entry_id}")
-        response.raise_for_status()
-        entry = EntryRead.model_validate()
-        return response.json()
+        try:
+            response.raise_for_status()
+        except:
+            return None
+        entry = EntryRead.model_validate(response.json())
+        return entry
 
 async def get_entry_data(entry_id:int) -> Optional[EntryRead]:
     if entry_id < 0:

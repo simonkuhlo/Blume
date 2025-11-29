@@ -28,9 +28,9 @@ def create_dummy_user(session: Session) -> User:
     return user
 
 def create_dummy_answers(session: Session, entry:Entry, user: User) -> list[Answer]:
-    answers = [create_dummy_answer(session=session, user=user, entry=entry, question_id=0),
-               create_dummy_answer(session=session, user=user, entry=entry, question_id=1),
+    answers = [create_dummy_answer(session=session, user=user, entry=entry, question_id=1),
                create_dummy_answer(session=session, user=user, entry=entry, question_id=2),
+               create_dummy_answer(session=session, user=user, entry=entry, question_id=3),
                ]
     return answers
 

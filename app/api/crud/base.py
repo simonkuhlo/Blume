@@ -30,6 +30,7 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
         statement = select(self.db_model).offset(start_id).limit(limit)
         read_object_list = []
         for db_item in self.session.scalars(statement):
+            print(db_item)
             read_object_list.append(self.read_schema.model_validate(db_item))
         return read_object_list
 

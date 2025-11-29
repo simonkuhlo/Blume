@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
-from models import User
+from models.user import User
 from models.base import Base
 from add_default_questions import add_default_questions
 from create_dummy_entry import create_dummy_entry
