@@ -50,6 +50,14 @@ async def show_creator_app(request: Request):
 async def show_creator_app(request: Request):
     return templates.TemplateResponse("canvas.j2", {"request": request})
 
+@app.get("/entry/creator", response_class=HTMLResponse)
+async def show_creator_app(request: Request):
+    return templates.TemplateResponse("apps/entry_creator_app.j2", {"request": request})
+
+@app.post("/entry/creator", response_class=HTMLResponse)
+async def create_entry(request: Request):
+    print(request)
+
 @app.get("/book", response_class=HTMLResponse)
 async def get_book(request: Request):
     return templates.TemplateResponse("book/dynamic_book.j2", {"request": request, "entry_id": 0})
