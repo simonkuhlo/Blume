@@ -7,8 +7,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import FileResponse
 from backend.schemas.entry import EntryCreate
-from services.get_entry_data import get_entry_data, get_entry_data_new
-from services import create_entry
+from api_services.entry import get_entry_data, get_entry_data
+from api_services import create_entry
 from backend.schemas.user import UserRead
 import httpx
 
@@ -69,9 +69,9 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
     match transition:
         case "next":
             index = index + 1
-    previous_entry = await get_entry_data_new(index - 1)
-    current_entry = await get_entry_data_new(index)
-    next_entry = await get_entry_data_new(index + 1)
+    previous_entry = await get_entry_data(index - 1)
+    current_entry = await get_entry_data(index)
+    next_entry = await get_entry_data(index + 1)
     return templates.TemplateResponse("book/animated_entry.j2", {"request": request,
                                                         "transition": transition,
                                                         "previous_entry": previous_entry,
