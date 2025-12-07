@@ -10,8 +10,9 @@ if TYPE_CHECKING:
 
 class Entry(Base):
     __tablename__ = "entry"
-    published: Mapped[bool] = mapped_column(Boolean, nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user_account.id"))
+    secret: Mapped[Optional[str]] = mapped_column(String)
+    published: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    user_id: Mapped[Optional[int]] = mapped_column(ForeignKey("user_account.id"))
     user: Mapped["User"] = relationship("User", back_populates="entries")
     answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="entry")
 

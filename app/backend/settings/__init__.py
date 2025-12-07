@@ -1,5 +1,7 @@
-server_host = "0.0.0.0"
-server_port = 8080
+from . import entries
+
+server_host = "192.168.178.38"
+server_port = 6969
 server_debug_mode = True
 
 app_title: str = "BlumeBackend"
