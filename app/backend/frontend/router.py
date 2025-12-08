@@ -3,7 +3,8 @@ from typing import Literal, Annotated
 from fastapi import FastAPI, Request, Form, APIRouter
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, FileResponse
-from crud import entry, answer
+from crud import entry as entry_crud, answer as answer_crud
+from security.verify_entry_secret import verify_entry_secret
 from . import testroutes
 
 from fastapi.staticfiles import StaticFiles
@@ -41,13 +42,15 @@ async def show_creator_app(request: Request):
 async def show_creator_app(request: Request):
     return templates.TemplateResponse("canvas.j2", {"request": request})
 
-@router.get("/entry/creator", response_class=HTMLResponse)
-async def show_creator_app(request: Request):
-    return templates.TemplateResponse("apps/entry_creator_app.j2", {"request": request})
+@router.get("/entry/{entry_id}/editor", response_class=HTMLResponse)
+async def show_creator_app(request: Request, entry_id: int):
+    entry = entry_crud.get(entry_id)
+    return templates.TemplateResponse("apps/entry_editor/entry_editor_app.j2", {"request": request, "entry": entry})
 
-@router.post("/entry/creator", response_class=HTMLResponse)
-async def create_entry_endpoint(user_id: Annotated[int, Form()]):
-    await create_entry.create_entry(user_id)
+@router.post("/entry/{entry_id}/request_editor", response_class=HTMLResponse)
+async def show_creator_app(request: Request, entry_id: int, secret: Annotated[str, Form()]):
+    entry = await verify_entry_secret(entry_id, secret)
+    return templates.TemplateResponse("apps/entry_editor/entry_editor.j2", {"request": request, "entry": entry})
 
 @router.get("/book", response_class=HTMLResponse)
 async def get_book(request: Request):
@@ -58,9 +61,9 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
     match transition:
         case "next":
             index = index + 1
-    previous_entry = entry.get(index - 1, False)
-    current_entry = entry.get(index, False)
-    next_entry = entry.get(index + 1, False)
+    previous_entry = entry_crud.get(index - 1, False)
+    current_entry = entry_crud.get(index, False)
+    next_entry = entry_crud.get(index + 1, False)
     return templates.TemplateResponse("book/animated_entry.j2", {"request": request,
                                                         "transition": transition,
                                                         "previous_entry": previous_entry,
@@ -70,7 +73,7 @@ async def get_entry(request: Request, index: int = 0, transition: Literal["next"
 
 @router.get("/book/answer/{index}/edit/", response_class=HTMLResponse)
 async def get_entry(request: Request, answer_id: int = 0):
-    answer_object = answer.get(answer_id, False)
+    answer_object = answer_crud.get(answer_id, False)
     return templates.TemplateResponse("book/elements/answer_edit_input.j2", {"request": request,
                                                         "answer": answer_object,
                                                         })

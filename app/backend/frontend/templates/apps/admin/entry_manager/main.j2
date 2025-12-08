@@ -4,14 +4,18 @@
     <link rel="stylesheet" href="/static/style/entry_browser.css">
     <h1>Entry Admin</h1>
     <div class="box-h entry_manager-root">
+        <div class="spacer-h"></div>
         <div class="entry_browser-root" id="entry_browser_root">
             <p hx-trigger="load" hx-get="/tests/admin/entry_browser" hx-target="#entry_browser_root">Unable to load entry browser.</p>
             <button hx-get="/tests/admin/entry_browser" hx-target="#entry_browser_root">Retry</button>
         </div>
-        <div class="spacer-h"></div>
+
+        <h1 style="text-wrap: nowrap; height: 100%; align-content: center; margin: 0; padding-left: 15px; padding-right: 15px;">→</h1>
+
         <div class="entry_details-root" id="entry_details-root">
             <p>Unable to load entry details.</p>
         </div>
+        <div class="spacer-h"></div>
     </div>
 
 {% endblock %}
