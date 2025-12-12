@@ -1,6 +1,7 @@
 .box-h {
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
 }
 
 .box-v {

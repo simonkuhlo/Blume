@@ -6,18 +6,21 @@ from fastapi.responses import HTMLResponse, FileResponse
 from crud import entry as entry_crud, answer as answer_crud
 from security.verify_entry_secret import verify_entry_secret
 from . import testroutes
+from .apps.question_collection_manager.router import router as question_collection_manager_router
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 router = APIRouter(tags=["frontend"])
+admin_router = APIRouter(prefix="/admin", tags=["admin"])
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 # Configure Jinja2 templates directory
 templates = Jinja2Templates(directory=f"{BASE_DIR}/templates")
-
+admin_router.include_router(question_collection_manager_router)
 router.include_router(testroutes.router)
+router.include_router(admin_router)
 
 # show_... : returns fully rendered page including base template
 # get_...  : returns a single element

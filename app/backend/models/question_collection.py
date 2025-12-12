@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 class QuestionCollection(Base):
     __tablename__ = "question_collection"
     title: Mapped[str] = mapped_column(String)
-    description: Mapped[str] = mapped_column(String)
+    description: Mapped[str] = mapped_column(String, default="")
     questions: Mapped[list["Question"]] = relationship(secondary=association_table, back_populates="collections")
 
     def __repr__(self) -> str:

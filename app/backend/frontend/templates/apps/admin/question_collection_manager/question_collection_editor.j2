@@ -1,0 +1,39 @@
+<div class="box-v">
+    <p>Title: {{ question_collection.title }}</p>
+    <p>Description: {{ question_collection.description }}</p>
+    <div class="spacer-v"></div>
+    <div class="box-h" style="padding: 3px; margin-bottom: 5px; gap: 3px; height: 100px">
+        <div class="browser_frame border">
+            <div class="box-h" style="height: 100%">
+                <div class="browser-content_root">
+                    {% for question in question_collection.questions %}
+                        <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
+                        {% endfor %}
+                    {% for question in question_collection.questions %}
+                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
+                        {% endfor %}
+                    {% for question in question_collection.questions %}
+                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
+                        {% endfor %}
+                    {% for question in question_collection.questions %}
+                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
+                        {% endfor %}
+                    {% for question in question_collection.questions %}
+                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
+                        {% endfor %}
+                </div>
+            <div style="width: 10px; height: 100%; background-color: #2196F3"></div>
+            </div>
+        </div>
+        <div class="browser_frame border">
+            <div class="box-h" style="height: 100%">
+                <div class="browser-content_root">
+                    {% for question in question_collection.questions %}
+                        <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Add</button></div>
+                        {% endfor %}
+                </div>
+            <div style="width: 10px; height: 100%; background-color: #2196F3"></div>
+            </div>
+        </div>
+    </div>
+</div>

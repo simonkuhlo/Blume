@@ -6,7 +6,7 @@ class Read(BaseModel):
     id: int
     title: Optional[str]
     description: Optional[str]
-    question_ids: Optional[list[QuestionRead]]
+    questions: Optional[list[QuestionRead]]
 
     class Config:
         from_attributes = True

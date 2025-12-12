@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, Form
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from fastapi.requests import Request
-from crud import entry as entry_crud, question as question_crud
+from crud import entry as entry_crud, question as question_crud, question_collection as question_collections_crud
 from schemas.entry import EntryCreate
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -1,6 +1,11 @@
 <form>
     <div id="question-edit-result"></div>
     <div class="box-v">
+        <div class="app_widget-toolbar">
+            Question Details
+            <div class="spacer-h"></div>
+            <button hx-get="/tests/admin/question_editor/{{ question.id }}" hx-target="#question_details-root">Refresh</button>
+        </div>
         <div class="box-h">
             <label for="question-title-input">Title</label>
             <input id="question-title-input" name="title" type="text" value="{{ question.title }}">
