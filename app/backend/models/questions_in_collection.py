@@ -6,6 +6,6 @@ from sqlalchemy import Integer
 
 association_table = Table("collection_has_questions",
                           Base.metadata,
-                          Column("collection_id", Integer, ForeignKey("question_collection.id")),
-                          Column("question_id", Integer, ForeignKey("question.id"))
+                          Column("collection_id", Integer, ForeignKey("question_collection.id", ondelete="CASCADE"), primary_key=True),
+                          Column("question_id", Integer, ForeignKey("question.id", ondelete="CASCADE"), primary_key=True)
                           )

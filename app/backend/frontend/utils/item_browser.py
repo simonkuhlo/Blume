@@ -1,4 +1,6 @@
 from typing import Optional
+from fastapi.requests import Request
+from fastapi.responses import HTMLResponse
 from frontend.jinja_templates import templates
 
 class ItemBrowserObjectButton:
@@ -6,12 +8,15 @@ class ItemBrowserObjectButton:
                  on_click_url: str,
                  name: str = "Unnamed item browser button",
                  hx_target: str = "this",
+                 hx_swap: str = "innerHTML",
                  ):
         self.name: str = name
         self.on_click_url: str = on_click_url
-        self.hx_target: str = on_click_url
-        self.on_click_url: str = on_click_url
         self.hx_target: str = hx_target
+        self.hx_swap: str = hx_swap
+
+    def render(self, request: Request) -> HTMLResponse:
+        return templates.TemplateResponse("apps/elements/object_browser_button.j2", {"request" : request, "button" : self})
 
 class ItemBrowserObject:
     def __init__(self,
@@ -41,5 +46,5 @@ class ItemBrowser:
 
         self.objects: list[ItemBrowserObject] = objects
 
-    def render(self):
-        return templates.TeplateResponse("apps/elements/object_browser.j2", {"browser" : self})
+    def render(self, request: Request) -> HTMLResponse:
+        return templates.TemplateResponse("apps/elements/object_browser.j2", {"request" : request, "browser" : self})

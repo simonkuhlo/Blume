@@ -14,8 +14,8 @@ class Question(Base):
     title: Mapped[str]
     description: Mapped[str]
     short: Mapped[bool] = mapped_column(Boolean, default=False)
-    collections: Mapped[list["QuestionCollection"]] = relationship(secondary=association_table, back_populates="questions")
-    answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="question")
+    collections: Mapped[list["QuestionCollection"]] = relationship(secondary=association_table, back_populates="questions", passive_deletes=True)
+    answers: Mapped[list["Answer"]] = relationship("Answer", back_populates="question", )
 
     def __repr__(self) -> str:
         return f"Question(id={self.id!r})"

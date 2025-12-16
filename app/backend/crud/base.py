@@ -38,7 +38,7 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
         db_item = self.session.query(self.db_model).filter(self.db_model.id == object_id).first()
         if not db_item:
             if raise_exceptions:
-                raise HTTPException(404, "Object not found")
+                raise HTTPException(404, f"Object not found. Id: {object_id}")
             else:
                 return None
         return self.read_schema.model_validate(db_item)
@@ -53,7 +53,7 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
     def update(self, object_id: int, updated_object: UpdateSchema) -> ReadSchema:
         db_item = self.session.query(self.db_model).filter(self.db_model.id == object_id).first()
         if not db_item:
-            raise HTTPException(404, "Object not found")
+            raise HTTPException(404, f"Object not found. Id: {object_id}")
         update_data = updated_object.model_dump(exclude_unset=True)
         for key, value in update_data.items():
             setattr(db_item, key, value)
@@ -62,5 +62,7 @@ class CRUDHandler(Generic[ModelType, ReadSchema, CreateSchema, UpdateSchema]):
         return self.read_schema.model_validate(db_item)
 
     def delete(self, object_id: int) -> None:
-        self.session.query(self.db_model).filter(self.db_model.id == object_id).delete()
-        self.session.commit()
+        obj = self.session.get(self.db_model, object_id)
+        if obj:
+            self.session.delete(obj)
+            self.session.commit()

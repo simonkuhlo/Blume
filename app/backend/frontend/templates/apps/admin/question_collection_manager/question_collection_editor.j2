@@ -1,41 +1,49 @@
-<div class="box-v">
-    <p>Title: {{ question_collection.title }}</p>
-    <p>Description: {{ question_collection.description }}</p>
-    <div class="spacer-v"></div>
-    <div class="box-h" style="padding: 3px; margin-bottom: 5px; gap: 3px; height: 100px">
-        <div class="browser_frame border">
-            <div class="box-h" style="height: 100%">
-                <div class="browser-content_root">
-                    {% for question in question_collection.questions %}
-                        <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
-                        {% endfor %}
-                    {% for question in question_collection.questions %}
-                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
-                        {% endfor %}
-                    {% for question in question_collection.questions %}
-                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
-                        {% endfor %}
-                    {% for question in question_collection.questions %}
-                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
-                        {% endfor %}
-                    {% for question in question_collection.questions %}
-                            <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div> <button>Remove</button></div>
-                        {% endfor %}
-                </div>
-            <div style="width: 10px; height: 100%; background-color: #2196F3"></div>
-            </div>
-        </div>
-        <div class="browser_frame border">
-            <div class="box-h" style="height: 100%">
-                <div class="browser-content_root">
-                    {% for question in unrelated_questions %}
-                        <div class="browser_element">{{ question.id }} - {{ question.title }} <div class="spacer-h"></div>
-                            <button hx-put="admin/question_collection_manager/editor/{{ question_collection.id }}/add_question/{{ question.id }}">Add</button>
-                        </div>
-                        {% endfor %}
-                </div>
-            <div style="width: 10px; height: 100%; background-color: #2196F3"></div>
-            </div>
-        </div>
+<div class="box-v editor-frame" style="height: 100%; gap: 10px;">
+    {% if reload_browser == true %}
+        <div hx-get="/admin/question_collection_manager/browser" hx-target="#question_collection_browser-root" hx-trigger="load"></div>
+    {% endif %}
+    <div class="box-v">
+        <h2 style="text-align: center; margin: 0; padding-top: 5px;">Editor</h2>
+        {% if question_collection != None %}
+        <p style="text-align: center; border-bottom: 1px solid black; margin: 0; padding-bottom: 5px;">Editing collection {{ question_collection.id }}</p>
+        {% endif %}
     </div>
+    {% if question_collection != None %}
+        <form>
+        <table>
+            <tr>
+                <td>
+                    <label for="title-edit">Title</label>
+                </td>
+                <td style="width: 100%">
+                    <input id="title-edit" name="title" type="text" value="{{ question_collection.title }}" style="width: 100%; box-sizing: border-box">
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top">
+                    <label for="description-edit">Description</label>
+                </td>
+                <td>
+                    <textarea name="description" id="description-edit" style="width: 100%; box-sizing: border-box">{{ question_collection.description }}</textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="box-h" style="gap: 3px; padding-right: 3px;">
+            <div class="spacer-h"></div>
+            <button hx-delete="/admin/question_collection_manager/editor/{{ question_collection.id }}" hx-target="closest .editor-frame" hx-swap="outerHTML">Delete</button>
+            <button hx-put="/admin/question_collection_manager/editor/{{ question_collection.id }}" hx-target="closest .editor-frame" hx-swap="outerHTML">
+                Save
+            </button>
+        </div>
+        </form>
+        <div hx-trigger="load" hx-get="/admin/question_collection_manager/editor/{{ question_collection.id }}/question_relation_browser" id="question_relation_browser-frame" style="border-top: 1px solid black">
+            <p  hx-target="#question_relation_browser-frame">
+                Unable to load question relation browser.
+            <button hx-get="/admin/question_collection_manager/editor/{{ question_collection.id }}/question_relation_browser" hx-target="#question_relation_browser-frame">
+                Retry
+            </button>
+        </div>
+    {% else %}
+        <p style="text-align: center;">Select a collection in the browser to load it in the editor.</p>
+    {% endif %}
 </div>

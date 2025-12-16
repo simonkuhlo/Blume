@@ -12,7 +12,7 @@ class QuestionCollection(Base):
     __tablename__ = "question_collection"
     title: Mapped[str] = mapped_column(String)
     description: Mapped[str] = mapped_column(String, default="")
-    questions: Mapped[list["Question"]] = relationship(secondary=association_table, back_populates="collections")
+    questions: Mapped[list["Question"]] = relationship(secondary=association_table, back_populates="collections", passive_deletes=True)
 
     def __repr__(self) -> str:
         return f"Question(id={self.id!r})"

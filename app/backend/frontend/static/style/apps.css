@@ -38,11 +38,15 @@
     flex-direction: row;
 }
 
-.browser_element:hover{
+.hover_element {
+    width: 100%;
+}
+
+.hover_element:hover{
     background: lightyellow;
 }
 
-.browser_element:active{
+.hover_element:active{
     background: antiquewhite;
 }
 
@@ -72,4 +76,17 @@
     width: 100%;
     overflow-y: scroll;
     scrollbar-width: auto;
+}
+
+.editor-table {
+
+}
+
+.editor-table tr{
+
+}
+
+.editor-table td{
+    width: 100%;
+    vertical-align: top
 }

@@ -1,6 +1,8 @@
-<div hx-get={{ object.on_click_url }} hx-target="#editor" hx-trigger="click" class="browser_element">
-    {{ object.title }}<div class="spacer-h"></div>
+<div class="browser_element">
+    <div {% if object.on_click_url != None %} hx-get={{ object.on_click_url }} hx-target="#editor" hx-trigger="click" {% endif %} class="box-h hover_element">
+        {{ object.title }}<div class="spacer-h"></div>
+    </div>
     {% for button in object.buttons %}
-        Buttons not set up.
+        {% include "apps/elements/object_browser_button.j2" %}
     {% endfor %}
 </div>
