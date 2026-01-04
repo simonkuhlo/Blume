@@ -1,5 +1,5 @@
 <div class="front" data-entry_id="{{ entry.id }}" id="e{{ entry.id }}f">
-    {% if entry != None %}
+    {% if entry != None or edit_mode %}
     <style>
         .entry-container {
             font-family: Nunito, sans-serif;
@@ -12,35 +12,63 @@
         <div class="entry-element" id="favorites-1">
             <div class="entry-element-field">
                 Movie / Show
-                <p>{{ entry.favorite_movie }}</p>
+                {% if edit_mode %}
+                    <input name="favorite_movie" type="text">
+                {% else %}
+                    <p>{{ entry.favorite_movie }}</p>
+                {% endif %}
             </div>
             <div class="entry-element-field">
                 Animal
-                <p>{{ entry.favorite_animal }}</p>
+                {% if edit_mode %}
+                    <input name="favorite_animal" type="text">
+                {% else %}
+                    <p>{{ entry.favorite_animal }}</p>
+                {% endif %}
             </div>
             <div class="entry-element-field">
                 Food
-                <p>{{ entry.favorite_food }}</p>
+                {% if edit_mode %}
+                    <input name="favorite_food" type="text">
+                {% else %}
+                    <p>{{ entry.favorite_food }}</p>
+                {% endif %}
             </div>
             <div class="entry-element-field">
                 Book / Literature
-                <p>{{ entry.favorite_book }}</p>
+                {% if edit_mode %}
+                    <input name="favorite_book" type="text">
+                {% else %}
+                    <p>{{ entry.favorite_book }}</p>
+                {% endif %}
             </div>
         </div>
         <div class="entry-element" id="favorites-2">
             <div class="entry-element-field">
                 Music
-                <p>{{ entry.favorite_music }}</p>
+                {% if edit_mode %}
+                    <input name="favorite_music" type="text">
+                {% else %}
+                    <p>{{ entry.favorite_music }}</p>
+                {% endif %}
             </div>
         </div>
         <div class="entry-element" id="future">
             <div class="entry-element-field">
                 In the future, I want to become...
-                <p>{{ entry.want_to_become }}</p>
+                {% if edit_mode %}
+                    <input name="want_to_become" type="text">
+                {% else %}
+                    <p>{{ entry.want_to_become }}</p>
+                {% endif %}
             </div>
             <div class="entry-element-field">
                 My biggest idol:
-                <p>{{ entry.biggest_idol }}</p>
+                {% if edit_mode %}
+                    <input name="biggest_idol" type="text">
+                {% else %}
+                    <p>{{ entry.biggest_idol }}</p>
+                {% endif %}
             </div>
         </div>
         <div class="entry-element" id="custom">
@@ -48,7 +76,15 @@
         </div>
         <div class="box-h control-element">
             <div class="spacer-h"></div>
-            <button hx-get="/explorer/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
+            {% if edit_mode %}
+                {% if entry %}
+                    <button hx-get="/explorer/edit/{{ entry.id }}/save" hx-target="#page-root">Save</button>
+                {% else %}
+                    <button hx-get="/explorer/create" hx-target="#page-root">Create</button>
+                {% endif %}
+            {% else %}
+                <button hx-get="/explorer/entry/{{ entry.id }}/next" hx-target="#page-root">Next</button>
+            {% endif %}
         </div>
     </div>
     {% else %}

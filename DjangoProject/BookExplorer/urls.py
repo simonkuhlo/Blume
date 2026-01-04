@@ -22,4 +22,6 @@ urlpatterns = [
     path('', views.book_start, name='book_start'),
     path("entry/<int:source_id>/next", views.next_entry, name='next_entry'),
     path("entry/<int:source_id>/prev", views.previous_entry, name='prev_entry'),
+    path("create/", views.create, name='create'),
+    path("creator/", views.creator, name='creator'),
 ]
