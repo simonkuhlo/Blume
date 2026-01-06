@@ -8,4 +8,8 @@ class EntryAdmin(admin.ModelAdmin):
 
 @admin.register(CreateCode)
 class CreateCodeAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ['info_display']
+
+    def info_display(self, obj):
+        return f"http://testing.meow.technology:6969/creator/enter_key/{obj.secret}"  # Custom info string
+    info_display.short_description = "Url"

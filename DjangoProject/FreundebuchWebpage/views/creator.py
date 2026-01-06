@@ -1,3 +1,4 @@
+from typing import Optional
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from Entries.models import EntryV1, CreateCode
@@ -43,19 +44,20 @@ def create(request):
             context = {"edit_mode": True}
             return render(request, "creator/creator.html", context)
 
-def enter_key(request):
+def enter_key(request, key: Optional[str] = None):
+    code = key
     match request.method:
         case "GET":
-            return render(request, "creator/enter_creation_code.html")
+            if not key:
+                return render(request, "creator/enter_creation_code.html")
         case "POST":
             code = request.POST.get("code")
-            code_objects = CreateCode.objects.filter(secret=code).first()
-            if code_objects:
-                request.session["code"] = code
-                return redirect("/creator/")
-            else:
-                context = {"failure" : True}
-                return render(request, "creator/enter_creation_code.html", context)
         case _:
-            context = {"failure": True}
-            return render(request, "creator/enter_creation_code.html", context)
+            return HttpResponse(status=404)
+    code_objects = CreateCode.objects.filter(secret=code).first()
+    if code_objects:
+        request.session["code"] = code
+        return redirect("/creator/")
+    else:
+        context = {"failure" : True}
+        return render(request, "creator/enter_creation_code.html", context)
