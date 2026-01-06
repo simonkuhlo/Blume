@@ -71,8 +71,24 @@
                 {% endif %}
             </div>
         </div>
-        <div class="entry-element" id="custom">
-            Custom Field - Shoutbox, Drawing, etc. (1 Field)
+        <div class="entry-element" id="custom" style="border-style: dashed">
+            {% if edit_mode %}
+                <div class="">
+                    DON'T USE THIS YET
+                    <div class="box-h" style="gap: 5px;">
+                        <select name="" id="">
+                            <option value="text">[v1] Custom Text</option>
+                            <option value="text" disabled>[v2] Upload Image</option>
+                            <option value="text" disabled>[v2] Upload Audio</option>
+                            <option value="text" disabled>[v2] Upload Video</option>
+                            <option value="text" disabled>[v2] Draw something</option>
+                            <option value="text" disabled>[v3] Make a button</option>
+                        </select>
+                        <button disabled>+ Add custom field</button></div>
+                </div>
+            {% else %}
+                bup.
+            {% endif %}
         </div>
         <div class="box-h control-element">
             <div class="spacer-h"></div>
