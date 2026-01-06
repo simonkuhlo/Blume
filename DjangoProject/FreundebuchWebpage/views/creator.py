@@ -1,18 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from Entries.models import EntryV1, CreateCode
 
-# Create your views here.
-
-def book_start(request) -> HttpResponse:
-    context = {"var": "Hallo"}
-    return render(request, "book_explorer/book.html", context)
-
-def create(request) -> HttpResponse:
+def create(request):
     if not request.session.get("code"):
-        return redirect("/enter_creation_code/")
+        return redirect("/creator/enter_key")
     if not CreateCode.objects.filter(pk=request.session["code"]).exists():
-        return redirect("/enter_creation_code/")
+        return redirect("/creator/enter_key")
     match request.method:
         case "POST":
             try:
@@ -40,31 +34,28 @@ def create(request) -> HttpResponse:
                     favorite_music=request.POST["favorite_music"],
                     biggest_idol=request.POST["biggest_idol"],
                     want_to_become=request.POST["want_to_become"]
-                    )
+                )
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
                 return redirect("/explorer/")
             except Exception as e:
                 print(e)
         case _:
             context = {"edit_mode": True}
-            return render(request, "book_explorer/creator.html", context)
+            return render(request, "creator/creator.html", context)
 
-
-def next_entry(request, source_id: int) -> HttpResponse:
-    context = {
-        "current_entry": EntryV1.objects.filter(pk=source_id + 1).first(),
-        "previous_entry": EntryV1.objects.filter(pk=source_id).first(),
-        "transition": "next",
-        "edit_mode": False
-               }
-    return render(request, "book_explorer/animated_entry.html", context)
-
-
-def previous_entry(request, source_id: int) -> HttpResponse:
-    context = {
-        "current_entry": EntryV1.objects.filter(pk=source_id).first(),
-        "previous_entry": EntryV1.objects.filter(pk=source_id - 1).first(),
-        "transition" : "prev",
-        "edit_mode" : False
-    }
-    return render(request, "book_explorer/animated_entry.html", context)
+def enter_key(request):
+    match request.method:
+        case "GET":
+            return render(request, "creator/enter_creation_code.html")
+        case "POST":
+            code = request.POST.get("code")
+            code_objects = CreateCode.objects.filter(secret=code).first()
+            if code_objects:
+                request.session["code"] = code
+                return redirect("/creator/")
+            else:
+                context = {"failure" : True}
+                return render(request, "creator/enter_creation_code.html", context)
+        case _:
+            context = {"failure": True}
+            return render(request, "creator/enter_creation_code.html", context)

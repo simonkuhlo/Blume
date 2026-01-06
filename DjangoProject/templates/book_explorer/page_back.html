@@ -111,7 +111,7 @@
             </div>
             <div class="box-h control-element">
                 {% if not edit_mode %}
-                    <button hx-get="/explorer/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
+                    <button hx-get="/explorer/partial/entry/{{ entry.id }}/prev" hx-target="#page-root">Back</button>
                 {% endif %}
                 <div class="spacer-h"></div>
             </div>
@@ -120,7 +120,7 @@
         <div class="box-center">
             <div class="box-v">
                 Entry not found. <br>
-                <button  hx-get="/explorer/entry/0/next" hx-target="#page-root">Reset</button>
+                <button  hx-get="/explorer/partial/start" hx-target="#page-root">Reset</button>
             </div>
         </div>
     {% endif %}
