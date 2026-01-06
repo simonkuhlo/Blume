@@ -11,7 +11,7 @@ def first(request) -> HttpResponse:
         "transition": "next",
         "edit_mode": False
     }
-    return render(request, "book_explorer/animated_entry.html", context)
+    return render(request, "book_explorer/parts/animated_entry.html", context)
 
 def next_entry(request, source_id: int) -> HttpResponse:
     try:
@@ -25,7 +25,7 @@ def next_entry(request, source_id: int) -> HttpResponse:
         "transition": "next",
         "edit_mode": False
                }
-    return render(request, "book_explorer/animated_entry.html", context)
+    return render(request, "book_explorer/parts/animated_entry.html", context)
 
 
 def previous_entry(request, source_id: int) -> HttpResponse:
@@ -40,4 +40,12 @@ def previous_entry(request, source_id: int) -> HttpResponse:
         "transition" : "prev",
         "edit_mode" : False
     }
-    return render(request, "book_explorer/animated_entry.html", context)
+    return render(request, "book_explorer/parts/animated_entry.html", context)
+
+def entry_list(request, start: int = 0, length:int = 0) -> HttpResponse:
+    if length > 0:
+        entries = EntryV1.objects.all()[start:start+length]
+    else:
+        entries = EntryV1.objects.all()
+    context = {"entries": entries}
+    return render(request, "book_explorer/parts/entry_list.html", context)

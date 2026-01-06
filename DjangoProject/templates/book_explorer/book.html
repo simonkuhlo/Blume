@@ -2,7 +2,7 @@
 
 
 {% block main %}
-    {% load static %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'book_explorer/style/book.css' %}">
 <link rel="stylesheet" href="{% static 'book_explorer/style/entry.css' %}">
 <link rel="stylesheet" href="{% static 'book_explorer/style/element_positions.css' %}">
@@ -13,7 +13,7 @@
       <div class="book-cover already_flipped"></div>
       <div class="book-3d" id="page-root">
           {% block content %}
-                {% include "book_explorer/start_page.html" %}
+                {% include "book_explorer/parts/start_page.html" %}
           {% endblock %}
       </div>
       <div class="book-cover"></div>

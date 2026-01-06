@@ -38,3 +38,8 @@
     border: none;
     border-bottom: 2px dashed blue;
 }
+
+.entry-topic {
+    text-align: center;
+    overflow: hidden;
+}
