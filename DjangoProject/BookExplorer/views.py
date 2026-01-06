@@ -15,8 +15,11 @@ def create(request) -> HttpResponse:
                 birthday = request.POST["birthday"]
                 if birthday == "":
                     birthday = None
+                image_file = request.FILES.get("image")
+                print(image_file)
                 new_entry = EntryV1.objects.create(
                     name=request.POST["name"],
+                    image=image_file,
                     nicknames=request.POST["nicknames"],
                     birthday=birthday,
                     size=request.POST["size"],

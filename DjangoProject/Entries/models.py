@@ -23,7 +23,8 @@ class EntryV1(models.Model):
     location = models.CharField(max_length=500, blank=True, null=True)
     # How you can contact me (Email, Phone number, Discord)
     contact = models.CharField(max_length=500, blank=True, null=True)
-    #image = models.ImageField(upload_to='images/')
+    # Image
+    image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     # I really like...
     likes = models.CharField(max_length=500, blank=True, null=True)
     # I really don't like...

@@ -7,7 +7,13 @@
         </style>
         <div class="box-v entry-container">
             <div class="entry-element" id="image">
-                Image
+                {% if edit_mode %}
+                    <input type="file" id="" name="image">
+                {% else %}
+                    {% if entry.image %}
+                    <img src="{{ entry.image.url }}" alt="No Image found">
+                    {% endif %}
+                {% endif %}
             </div>
             <div class="entry-element" id="about_me">
                 <div class="entry-element-field">

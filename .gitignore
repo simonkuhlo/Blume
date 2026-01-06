@@ -8,3 +8,4 @@ api/database.sqlite
 *.sqlite3
 /.idea
 
+/DjangoProject/media
