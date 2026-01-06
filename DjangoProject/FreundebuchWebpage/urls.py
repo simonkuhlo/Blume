@@ -19,6 +19,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.main.index, name='index'),
-    path('dedication/', views.main.dedication, name='dedication'),
+    path('', views.index, name='index'),
+    path('dedication/', views.dedication, name='dedication'),
+    path('enter_creation_code/', views.enter_creation_code, name='dedication'),
 ]

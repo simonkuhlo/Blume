@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from Entries.models import EntryV1
+from django.shortcuts import render, redirect
+from Entries.models import EntryV1, CreateCode
 
 # Create your views here.
 
@@ -9,6 +9,10 @@ def book_start(request) -> HttpResponse:
     return render(request, "book_explorer/book.html", context)
 
 def create(request) -> HttpResponse:
+    if not request.session.get("code"):
+        return redirect("/enter_creation_code/")
+    if not CreateCode.objects.filter(pk=request.session["code"]).exists():
+        return redirect("/enter_creation_code/")
     match request.method:
         case "POST":
             try:
@@ -16,7 +20,6 @@ def create(request) -> HttpResponse:
                 if birthday == "":
                     birthday = None
                 image_file = request.FILES.get("image")
-                print(image_file)
                 new_entry = EntryV1.objects.create(
                     name=request.POST["name"],
                     image=image_file,
@@ -38,7 +41,8 @@ def create(request) -> HttpResponse:
                     biggest_idol=request.POST["biggest_idol"],
                     want_to_become=request.POST["want_to_become"]
                     )
-                return next_entry(request, new_entry.id - 1)
+                CreateCode.objects.filter(pk=request.session["code"]).first().delete()
+                return redirect("/explorer/")
             except Exception as e:
                 print(e)
         case _:

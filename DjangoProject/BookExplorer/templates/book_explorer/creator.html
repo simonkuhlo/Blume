@@ -1,7 +1,7 @@
 {% extends "book_explorer/book.html" %}
 
 {% block content %}
-    <form>
+    <form action="/explorer/create/" method="post">
         {% csrf_token %}
         <div class="flip already_flipped">
             {% include "book_explorer/page_back.html"%}
