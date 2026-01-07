@@ -19,7 +19,7 @@
                 <div class="entry-element-field">
                     My name is:
                     {% if edit_mode %}
-                        <input name="name" type="text">
+                        <input required name="name" type="text">
                     {% else %}
                         <p>{{ entry.name }}</p>
                     {% endif %}

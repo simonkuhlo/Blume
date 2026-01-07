@@ -10,12 +10,20 @@
         </div>
         <div class="navbar">
             <a href="/">Home</a>
-            <a href="/explorer">View entries</a>
             <a href="/creator">+ Create own entry</a>
             <div class="dropdown">
-                <a href="#" class="dropdown-toggle">Admin</a>
+                <a href="/explorer" class="dropdown-toggle">View entries</a>
                 <div class="dropdown-menu">
-                    <a href="/admin">Admin UI</a>
+                    <a href="/explorer">Explorer</a>
+                    <a href="/browser">Browser</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a target="_blank" rel="noopener noreferrer" href="/admin" class="dropdown-toggle">Admin</a>
+                <div class="dropdown-menu">
+                    <a target="_blank" rel="noopener noreferrer" href="/admin">Admin UI</a>
+                    <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/createcode/">Manage creation keys</a>
+                    <a target="_blank" rel="noopener noreferrer" href="/admin/Entries/entryv1/">Manage entries</a>
                 </div>
             </div>
             <div class="spacer-h"></div>

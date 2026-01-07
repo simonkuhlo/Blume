@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "192.168.178.38",
+    "127.0.0.1",
     "77.23.199.184",
     "testing.meow.technology"
 ]
