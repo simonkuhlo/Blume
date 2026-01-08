@@ -2,9 +2,13 @@
     <div class="front">
         <div class="box-v" style="height: 100%">
             <div class="box-v" style="height:100%; width: 100%; align-items: center; gap: 30px;">
-            <p hx-get="/explorer/partial/list" hx-target="this" hx-swap="outerHTML" hx-trigger="load">Unable to load Entry list.</p>
-            <div class="spacer-v"></div>
-            <button  hx-get="/explorer/partial/start" hx-target="#page-root" style="width: 100%">Start</button>
+                <h1>Welcome to the book explorer</h1>
+                    <p style="text-align: center">You can go through all public entries of my friend book here =)
+                        <br>Navigate with the "Back" and "Next" buttons on the bottom of a page. Start with the Start button below. You can get an overview of all existing entries or search for specific entries using the
+                        <a style="pointer-events: all" href="/browser/">entry browser</a>.
+                    </p>
+                <div class="spacer-v"></div>
+                <button  hx-get="/explorer/partial/start" hx-target="#page-root" style="width: 100%">Start</button>
             </div>
         </div>
     </div>
