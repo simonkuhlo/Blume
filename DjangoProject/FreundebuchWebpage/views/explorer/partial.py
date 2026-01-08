@@ -14,11 +14,14 @@ def first(request) -> HttpResponse:
     return render(request, "book_explorer/parts/animated_entry.html", context)
 
 def next_entry(request, source_id: int) -> HttpResponse:
-    try:
-        source_entry = EntryV1.objects.get(pk=source_id)
-        current_entry = source_entry.get_next_by_created()
-    except EntryV1.DoesNotExist:
-        return first(request)
+    source_entry = EntryV1.objects.filter(pk=source_id).first()
+    if source_entry:
+        try:
+            current_entry = source_entry.get_next_by_created()
+        except EntryV1.DoesNotExist:
+            current_entry = None
+    else:
+        current_entry = EntryV1.objects.first()
     context = {
         "current_entry": current_entry,
         "previous_entry": source_entry,
@@ -29,11 +32,14 @@ def next_entry(request, source_id: int) -> HttpResponse:
 
 
 def previous_entry(request, source_id: int) -> HttpResponse:
-    try:
-        source_entry = EntryV1.objects.get(pk=source_id)
-        previous_entry_object = source_entry.get_previous_by_created()
-    except EntryV1.DoesNotExist:
-        return first(request)
+    source_entry = EntryV1.objects.filter(pk=source_id).first()
+    if source_entry:
+        try:
+            previous_entry_object = source_entry.get_previous_by_created()
+        except EntryV1.DoesNotExist:
+            previous_entry_object = None
+    else:
+        previous_entry_object = EntryV1.objects.first()
     context = {
         "current_entry": source_entry,
         "previous_entry": previous_entry_object,
@@ -41,11 +47,3 @@ def previous_entry(request, source_id: int) -> HttpResponse:
         "edit_mode" : False
     }
     return render(request, "book_explorer/parts/animated_entry.html", context)
-
-def entry_list(request, start: int = 0, length:int = 0) -> HttpResponse:
-    if length > 0:
-        entries = EntryV1.objects.all()[start:start+length]
-    else:
-        entries = EntryV1.objects.all()
-    context = {"entries": entries}
-    return render(request, "book_explorer/parts/entry_list.html", context)
