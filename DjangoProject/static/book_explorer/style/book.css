@@ -15,6 +15,7 @@
     align-content: center;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 }
 
 .flip-book {
@@ -97,6 +98,10 @@
     position: absolute;
     padding: 15px;
     box-sizing: border-box;
+}
+
+.flip button {
+    pointer-events: auto;
 }
 
 @keyframes flipAnimation {
