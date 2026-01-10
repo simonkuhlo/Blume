@@ -9,3 +9,5 @@ api/database.sqlite
 /.idea
 
 /DjangoProject/media
+/DjangoProject/static/admin
+DjangoProject/django
