@@ -92,10 +92,6 @@
             {% else %}
                 {% if entry.rendered_custom_field %}
                     {{ entry.rendered_custom_field|safe }}
-                {% else %}
-                    {% if entry.custom_field_mode %}
-                        <p hx-get="/explorer/partial/entry/{{ entry.id }}/get_custom_field/" hx-trigger="load" hx-swap="outerHTML">Unable to load custom field.</p>
-                    {% endif %}
                 {% endif %}
             {% endif %}
         </div>

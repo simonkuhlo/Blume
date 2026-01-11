@@ -7,6 +7,8 @@ from Entries.models import EntryV1, CustomTextField
 
 def first(request) -> HttpResponse:
     source_entry = EntryV1.objects.first()
+    if source_entry:
+        source_entry.rendered_custom_field = get_custom_field(source_entry.id)
     context = {
         "current_entry": source_entry,
         "previous_entry": None,
