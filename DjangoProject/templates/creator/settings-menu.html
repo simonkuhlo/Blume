@@ -29,6 +29,39 @@
     color: white;
     user-select: none; /* prevent text selection while dragging */
   }
+    .dropdown-toggle {
+      display: none; /* hide the checkbox */
+    }
+
+.dropdown-toggle-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Hide menu by default */
+.dropdown-toggle-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  background: #444;
+}
+
+/* Show menu when checkbox is checked */
+.dropdown-toggle:checked ~ .dropdown-toggle-menu {
+  display: block;
+}
+
+.dropdown-toggle-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
 </style>
 
 <div class="floating" id="controls">
@@ -38,6 +71,20 @@
     <label>Brush Size: <input type="range" id="brushSize" min="1" max="50" value="5" /></label>
     <button id="eraserBtn">Eraser</button>
     <button id="clearBtn">Clear</button>
+    <div class="dropdown-toggle-frame">
+        <!-- Hidden checkbox controls state -->
+        <input type="checkbox" id="toggle" class="dropdown-toggle">
+
+        <!-- Label is the visible button -->
+        <label for="toggle" class="dropdown-toggle-label">Menu ▼</label>
+
+        <!-- The menu -->
+        <ul class="dropdown-toggle-menu">
+        <li><a href="#">Item 1</a></li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+        </ul>
+    </div>
   </div>
 </div>
 
