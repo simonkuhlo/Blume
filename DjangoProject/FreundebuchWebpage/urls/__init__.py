@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .. import views
-from . import explorer
+from . import explorer, blogposts
 from . import pages, explorer, creator
 
 urlpatterns = [
     path('', include(pages.urls), name='pages'),
     path('explorer/', include(explorer.urls), name='explorer'),
     path('creator/', include(creator.urls), name='creator'),
+    path('blogposts/', include(blogposts.urls), name='blogposts'),
 ]
