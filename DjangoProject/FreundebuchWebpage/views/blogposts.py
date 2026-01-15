@@ -3,13 +3,13 @@ from django.shortcuts import render
 
 from ..models import BlogPost
 
-def get_browser(request):
-    """Returns the blogpost browser as a HTTPResponse object."""
-    pass
+def browser(request):
+    return render(request, "blog_posts/browser.html")
 
-def reader(request):
-    """Returns the blogpost reader as a HTTPResponse object."""
-    pass
+def reader(request, post_id:int):
+    blogpost = BlogPost.objects.filter(id=post_id).first()
+    context = {"blogpost": blogpost}
+    return render(request, "blog_posts/reader.html", context)
 
 def news_feed(request):
     """Returns the blogpost news feed as a HTTPResponse object."""

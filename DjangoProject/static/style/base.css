@@ -18,7 +18,10 @@ button:active {
 .button {
     border: 1px solid black;
     background: white;
-    padding: 3px;
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+    padding: 1px 4px 1px 4px;
 }
 
 .button:hover {

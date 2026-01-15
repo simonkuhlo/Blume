@@ -14,16 +14,27 @@
         text-wrap: nowrap;
         gap: 5px;
     }
+    #news_feed-root {
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        overflow-y: scroll;
+        gap: 5px;
+        padding: 3px;
+    }
+    #news_feed-root a{
+        text-decoration: none;
+        color: black;
+    }
 </style>
-
 <div class="box-v" id="news_feed-panel">
     <div class="box-h" id="news_feed-toolbar">
         <h3>News Feed</h3>
         <div class="spacer-h"></div>
-        <a class="button" href="">Browse</a>
-        <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-content_root-frame">Refresh</button>
+        <a class="button" href="/blogposts/browser/">Browse</a>
+        <button hx-get="/blogposts/partial/news/" hx-target="#news_feed-root">Refresh</button>
     </div>
-    <div id="news_feed-content_root-frame">
+    <div class="box-v" id="news_feed-root">
         <p hx-get="/blogposts/partial/news/" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
             Unable to load news feed.
         </p>

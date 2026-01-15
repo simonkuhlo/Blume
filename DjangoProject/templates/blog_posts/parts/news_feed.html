@@ -1,16 +1,3 @@
-<style>
-    #news_feed-root {
-        width: 100%;
-        height: 100%;
-        border: 1px solid black;
-        overflow-y: scroll;
-        gap: 5px;
-        padding: 3px;
-    }
-</style>
-
-<div class="box-v" id="news_feed-root">
-    {% for blog_post in blog_posts %}
-        {% include "blog_posts/parts/post_preview.html" %}
-    {% endfor %}
-</div>
+{% for blog_post in blog_posts %}
+    {% include "blog_posts/parts/post_preview.html" %}
+{% endfor %}
