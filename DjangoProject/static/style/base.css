@@ -15,6 +15,20 @@ button:active {
     background: antiquewhite;
 }
 
+.button {
+    border: 1px solid black;
+    background: white;
+    padding: 3px;
+}
+
+.button:hover {
+    background: lightyellow;
+}
+
+.button:active {
+    background: antiquewhite;
+}
+
 .button_inline {
     border-top: none;
     border-bottom: none;

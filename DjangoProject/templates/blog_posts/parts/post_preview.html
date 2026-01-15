@@ -1,4 +1,17 @@
-<div class="box-v">
+<style>
+    .blog_post_preview {
+        min-height: 100px;
+    }
+    .blog_post_preview h3 {
+        margin: 0;
+        padding-bottom: 5px;
+    }
+    .blog_post_preview P {
+        margin: 0;
+    }
+</style>
+
+<div class="box-v blog_post_preview">
     <h3>{{ blog_post.title }}</h3>
     <p>{{ blog_post.preview }}</p>
 </div>
