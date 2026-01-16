@@ -2,28 +2,12 @@
 
 
 {% block main %}
-    <style>
-    #back_to_browser_button {
-        position: relative;
-        top: 10px;
-        left: 10px;
-    }
-    .blogpost_reader-frame-outer {
-        width: 100%;
-        box-sizing: border-box;
-        padding-left: 10%;
-        padding-right: 10%;
-    }
-    .blogpost_reader-frame-outer h1 {
-        text-align: center;
-    }
-    </style>
-
+    <link rel="stylesheet" href="/static/blog_posts/blog_posts.css">
     <a class="button" href="/blogposts/browser/" id="back_to_browser_button"><- Browser</a>
     {% if blogpost %}
         <div class="blogpost_reader-frame-outer">
             <h1>{{ blogpost.title }}</h1>
-            <p>{{ blogpost.content }}</p>
+            <p>{{ blogpost.content|linebreaksbr }}</p>
         </div>
     {% else %}
         Post not found.

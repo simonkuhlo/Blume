@@ -12,6 +12,11 @@ body {
     flex-direction: column;
 }
 
+.clean_text {
+    text-decoration: none;
+    color: black;
+}
+
 button {
     border: 1px solid black;
     background: white;

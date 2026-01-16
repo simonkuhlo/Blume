@@ -13,9 +13,9 @@ def reader(request, post_id:int):
 
 def news_feed(request):
     """Returns the blogpost news feed as a HTTPResponse object."""
-    context = {"blog_posts" : get_posts()}
+    context = {"blog_posts" : get_posts(0, 10)}
     return render(request, "blog_posts/parts/news_feed.html", context)
 
 def get_posts(start:int = 0, end:int = 5) -> QuerySet[BlogPost, BlogPost]:
-    blog_posts = BlogPost.objects.all()[start:end]
+    blog_posts = BlogPost.objects.all().order_by('-created')[start:end]
     return blog_posts
