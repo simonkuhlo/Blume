@@ -1,6 +1,8 @@
 .blog_post_preview {
     min-height: 150px;
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
     background-color: #cccccc;
     padding: 5px;
     box-sizing: border-box;
@@ -22,8 +24,8 @@
 .blogpost_reader-frame-outer {
     width: 100%;
     box-sizing: border-box;
-    padding-left: 10%;
-    padding-right: 10%;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 .blogpost_reader-frame-outer h1 {
     text-align: center;
@@ -78,6 +80,9 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+}
+.blog_browser-content_root .blog_post_preview{
+    width: 250px;
 }
 .blog_browser-control_panel {
     width: 100%;
