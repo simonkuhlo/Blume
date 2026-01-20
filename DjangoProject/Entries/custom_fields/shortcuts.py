@@ -9,6 +9,7 @@ from .custom_image_field_handler import CustomImageFieldHandler
 from .custom_text_field_handler import CustomTextFieldHandler
 from .custom_canvas_field_handler import CustomCanvasFieldHandler
 from .custom_button_field_handler import CustomButtonFieldHandler
+from .custom_video_field_handler import CustomVideoFieldHandler
 from Entries.models import EntryV1
 
 custom_field_mapping = {
@@ -16,7 +17,8 @@ custom_field_mapping = {
     "img" : CustomImageFieldHandler,
     "audio" : CustomAudioFieldHandler,
     "canvas" : CustomCanvasFieldHandler,
-    "button" : CustomButtonFieldHandler
+    "button" : CustomButtonFieldHandler,
+    "video" : CustomVideoFieldHandler,
 }
 
 
