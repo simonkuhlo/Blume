@@ -40,7 +40,6 @@ def create(request):
                     want_to_become=request.POST["want_to_become"],
                     custom_field_mode=custom_field_type,
                 )
-                print(custom_field_type)
                 if custom_field_type:
                     shortcuts.create(custom_field_type, request, new_entry)
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()

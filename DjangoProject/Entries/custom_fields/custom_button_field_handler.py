@@ -16,8 +16,8 @@ class CustomButtonFieldHandler(CustomFieldHandler):
         return CustomButtonField
 
     def create(self, request: HttpRequest, entry: EntryV1) -> None:
-        button_url = request.FILES['custom_button_url']
-        button_text = request.FILES['custom_button_text']
+        button_url = request.POST['custom_button_url']
+        button_text = request.POST['custom_button_text']
         if not button_url:
             raise ValidationError("No button url provided")
         CustomButtonField.objects.create(entry=entry, onclick_url=button_url, text=button_text)
