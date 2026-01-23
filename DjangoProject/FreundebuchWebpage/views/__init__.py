@@ -3,3 +3,4 @@ from . import explorer
 from . import creator
 from . import blogposts
 from . import editor
+from . import user
