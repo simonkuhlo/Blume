@@ -1,0 +1,12 @@
+{
+  "network" : {
+    "host" : "localhost",
+    "port" : 6969
+  },
+  "system" : {
+
+  },
+  "user" : {
+    "max_entries" : 1
+  }
+}
