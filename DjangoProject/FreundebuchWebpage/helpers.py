@@ -4,6 +4,8 @@ from settings import settings
 
 def can_create_entry(request) -> bool:
     if request.user.is_authenticated:
+        if settings.user.max_entries == -1:
+            return True
         entries = EntryV1.objects.filter(owner_id=request.user.id)
         if entries.count() >= settings.user.max_entries:
             return False

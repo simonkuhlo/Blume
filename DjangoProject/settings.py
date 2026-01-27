@@ -13,7 +13,7 @@ class SystemSettings(BaseModel):
     pass
 
 class UserSettings(BaseModel):
-    max_entries: int = Field(default=1)
+    max_entries: int = Field(default=1) # -1 = no limit
 
 class Settings(BaseModel):
     network: NetworkSettings = NetworkSettings()

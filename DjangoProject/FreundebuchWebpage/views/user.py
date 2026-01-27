@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
-
+from ..helpers import can_create_entry
 from Entries.models import EntryV1
 from settings import settings
 
@@ -50,9 +50,8 @@ def register_page(request):
 @login_required
 def account_page(request):
     entries = EntryV1.objects.filter(owner_id=request.user.id)
-    can_create_entry = entries.count() < settings.user.max_entries
     context = {
         "entries": entries,
-        "can_create_entry": can_create_entry
+        "can_create_entry": can_create_entry(request),
         }
     return render(request, "user/account_page.html", context)
