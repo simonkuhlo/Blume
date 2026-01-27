@@ -12,6 +12,7 @@
     min-height: 130px;
     max-height: 130px;
     border: 1px solid black;
+    box-sizing: border-box;
 }
 
 .card-m {
