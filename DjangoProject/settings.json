@@ -6,7 +6,11 @@
   "system" : {
 
   },
+  "entries" : {
+    "creation_protected" : true
+  },
   "user" : {
-    "max_entries" : 1
+    "max_entries" : 1,
+    "code_overrides_limit" : true
   }
 }

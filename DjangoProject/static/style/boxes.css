@@ -37,7 +37,6 @@
 .box-h-center {
     width: 100%;
     display: flex;
-    flex: 1 0 auto;
     justify-content: center;
     align-content: center;
     justify-items: center;
@@ -48,7 +47,6 @@
 .box-v-center {
     height: 100%;
     display: flex;
-    flex: 1 0 auto;
     justify-content: center;
     align-content: center;
     justify-items: center;
