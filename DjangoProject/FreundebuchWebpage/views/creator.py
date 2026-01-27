@@ -42,7 +42,7 @@ def create(request):
             if custom_field_type:
                 shortcuts.create(custom_field_type, request, new_entry)
             if request.user.is_authenticated:
-                new_entry.author = request.user
+                new_entry.owner = request.user
                 new_entry.save()
             if request.session.exists("code"):
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
