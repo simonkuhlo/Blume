@@ -42,6 +42,9 @@ def create(request):
                 )
                 if custom_field_type:
                     shortcuts.create(custom_field_type, request, new_entry)
+                if request.user.is_authenticated:
+                    new_entry.author = request.user
+                    new_entry.save()
                 CreateCode.objects.filter(pk=request.session["code"]).first().delete()
                 try:
                     return redirect(f"/explorer/partial/entry/{new_entry.get_previous_by_created().id}/next")
